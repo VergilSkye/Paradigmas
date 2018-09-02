@@ -1,7 +1,7 @@
 # Trabalho de Paradigmas: Implantação
 
-[Requisitos](#ImplataçãodeumaREST-API)
-[ToDo List](#ToDo List)
+[Requisitos](#Implatação-de-uma-REST-API)
+[ToDoList](#ToDo-List)
 
 
 
