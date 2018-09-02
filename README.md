@@ -1,10 +1,9 @@
 # Trabalho de Paradigmas: Implantação
 
-[toc]
-
+[Requisitos](####Requisitos)
 ## Implatação de uma REST-API
 
-* Requisitos
+* ####Requisitos
     1. Módulo de cadastro de usuários;
     2. Módulo de login;
     3. Módulo de gerenciamento de perfis;
