@@ -29,3 +29,6 @@
 - [ ] Fazer a proposta de um sistema ao professor
 - [ ] Na apresentação da proposta o grupo deverá mostrar uma modelagem básica que mostre o funcionamento do sistema
 - [ ] Rrelatório sobre a proposta (contendo: Título do projeto, nome dos integrantes do grupo, descrição da proposta e detalhamento das funcionalidades principais).
+
+### LUIS È UM VACIlão 
+:smile:
