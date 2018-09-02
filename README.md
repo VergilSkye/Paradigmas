@@ -1,11 +1,8 @@
 # Trabalho de Paradigmas: Implantação
 
-[Requisitos](## Implatação de uma REST-API)
-[Todo](### ToDo List:)
-[br]()
-[bra]()
-[bre]()
-[bri]()
+[Requisitos](#implatação de uma rest-api)
+[Todo](#todo list)
+
 
 
 ## Implatação de uma REST-API
