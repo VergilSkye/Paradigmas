@@ -1,7 +1,7 @@
 # Trabalho de Paradigmas: Implantação
 
-[Requisitos](#implatação de uma rest-api)
-[Todo](#todo list)
+- [Requisitos](*Requisitos*)
+- [ToDo List](#ToDo List)
 
 
 
