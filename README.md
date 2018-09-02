@@ -1,7 +1,7 @@
 # Trabalho de Paradigmas: Implantação
 
-- [Requisitos](*Requisitos*)
-- [ToDo List](#ToDo List)
+[Requisitos](*Requisitos)
+[ToDo List](#ToDo List)
 
 
 
