@@ -2,24 +2,12 @@
 
 [Requisitos](## Implatação de uma REST-API)
 [Todo](### ToDo List:)
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+[br]()
+[bra]()
+[bre]()
+[bri]()
+
+
 ## Implatação de uma REST-API
 
 * Requisitos
