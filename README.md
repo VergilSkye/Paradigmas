@@ -31,9 +31,7 @@
 - [ ] Rrelatório sobre a proposta (contendo: Título do projeto, nome dos integrantes do grupo, descrição da proposta e detalhamento das funcionalidades principais).
 
 
-## Luis odeia git
 
-:cupid:
 
 
 
