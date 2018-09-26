@@ -1,10 +1,16 @@
 # Trabalho de Paradigmas: Implantação
 
-[toc]
+## Table of Contents
 
-## Implatação de uma REST-API
+- [Implantação](#implantação-de-uma-rest-api)
+  * [requisitos](#requisitos)
+- [ToDoList](#to-do-list)
 
-* Requisitos
+
+
+## Implantação de uma REST-API
+
+* #### Requisitos
     1. Módulo de cadastro de usuários;
     2. Módulo de login;
     3. Módulo de gerenciamento de perfis;
@@ -18,12 +24,16 @@
     11. Banco de dados;
     12. Desejado -> Acesso de alguma funcionalidade via celular.
  
-### ToDo List:
+### To Do List:
 - [x] Definir em grupo 
 - [ ] Fazer a proposta de um sistema ao professor
 - [ ] Na apresentação da proposta o grupo deverá mostrar uma modelagem básica que mostre o funcionamento do sistema
 - [ ] Rrelatório sobre a proposta (contendo: Título do projeto, nome dos integrantes do grupo, descrição da proposta e detalhamento das funcionalidades principais).
 
+
 ## Luis não é vacilão
 
 :cupid:
+
+
+
