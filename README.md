@@ -2,13 +2,13 @@
 
 ## Table of Contents
 
-- [Implantação](#implantação-de-uma-rest-api)
+- [Implementação](#implementação-de-uma-rest-api)
   * [requisitos](#requisitos)
 - [ToDoList](#to-do-list)
 
 
 
-## Implantação de uma REST-API
+## Implementação de uma REST-API
 
 * #### Requisitos
     1. Módulo de cadastro de usuários;
