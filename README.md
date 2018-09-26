@@ -8,7 +8,7 @@
 
 
 
-## Implemenntação de uma REST-API
+## Implementação de uma REST-API
 
 * #### Requisitos
     1. Módulo de cadastro de usuários;
