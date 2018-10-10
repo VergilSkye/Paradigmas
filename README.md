@@ -62,9 +62,9 @@ Para armazenar os dados será utilizado um software de Banco de Dados MongoDB, e
 
 ## Associação módulo
 
-Módulos de servidor -> Virgílio
-Módulos de cliente -> Alexandre
-Banco de dados -> Luis
+Módulos de servidor -> Virgílio  
+Módulos de cliente -> Alexandre 
+Banco de dados -> Luis  
 
 ## Módulos concorrentes distribuido
 
