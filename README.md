@@ -72,6 +72,6 @@ O Node.js é uma linguagem single threaded e assíncrona. Nesse projeto não foi
 
 ## Andamento do projeto em percentual
 
-Servidor = 10%, apenas o esqueleto foi implementado além de um diagrama de recursos referente a REST API :disappointed_relieved:  
-Cliente = 0%, ainda não foi implementado um esqueleto para começar a codificação :disappointed:  
+Servidor = 10%, apenas o esqueleto foi implementado além de um diagrama de recursos referente a REST API :disappointed:  
+Cliente = 0%, ainda não foi implementado um esqueleto para começar a codificação :disappointed_relieved:  
 Banco de dados = 20% Foi feito um DER, além de uma descoberta dos atributos de cada classe :expressionless:  
