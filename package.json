@@ -35,8 +35,10 @@
     "compression": "^1.5.2",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "mongoose": "^5.3.6",
     "morgan": "^1.8.0",
-    "resource-router-middleware": "^0.6.0"
+    "resource-router-middleware": "^0.6.0",
+    "validator": "^10.8.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
