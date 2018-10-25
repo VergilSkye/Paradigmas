@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 
 let AnimalSchema = new mongoose.Schema({
     localizacao: {
-        type: Schema.ObjectId
+        type: Schema.ObjectId,
         ref: 'Local',
         required: true
     },
