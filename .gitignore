@@ -3,6 +3,7 @@
 /npm-debug.log
 /node_modules
 .DS_Store
+.env
 
 src/view/.DS_Store
 src/view/node_modules

@@ -1,7 +1,5 @@
 let mongoose = require('mongoose');
-
-const server = 'ds141043.mlab.com:41043'
-const database = 'zoo'
+require('dotenv').config();
 
 class Database {
 	constructor() {
@@ -9,7 +7,8 @@ class Database {
 	}
 
 	_connect() {
-		mongoose.connect('mongodb://${server}/${database}')
+
+		mongoose.connect(process.env.MONGODB_URI)
 			.then(() => {
 				console.log('Database connection successful')
 			})
