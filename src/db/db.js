@@ -1,26 +1,26 @@
 let mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config({
+	path: '../../.env'
+})
 
-class Database {
-	constructor() {
-		this._connect()
-	}
-
-	_connect() {
-
-		mongoose.connect(process.env.MONGODB_URI)
-			.then(() => {
-				console.log('Database connection successful')
-			})
-			.catch(err => {
-				console.error('Database connection error')
-			})
+const options = {
+	useNewUrlParser: true,
+	useCreateIndex: true,
+	reconnectInterval: 500, // Reconnect every 500ms
+	poolSize: 10,
+	auth:{
+		user:process.env.MUSER,
+		password:process.env.MPASSWORD
 	}
 }
 
-module.exports = new Database()
+mongoose.connect(process.env.MONGODB_URI, options)
+.then(()=>{
+	console.log('Database connection successful');     
+}, err=>{
+	console.error.bind(console, 'connection error:'+err)
+});
 
-// export default callback => {
-// 	// connect to a database if needed, then pass it to `callback`:
-// 	callback();
-// }
+module.exports = {mongoose}
+
+

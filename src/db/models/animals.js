@@ -1,10 +1,11 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-let AnimalSchema = new mongoose.Schema({
+const AnimalSchema = new Schema({
     localizacao: {
         type: Schema.ObjectId,
         ref: 'Local',
-        required: true
+        
     },
     classe: String,
     nome_cientifico: {
@@ -17,15 +18,17 @@ let AnimalSchema = new mongoose.Schema({
     sexo: {
         type: String,
         enum: ['macho', 'femea'],
-        required: true
+        
     },
     data_nascimento: {
         type: Date,
-        required: true
+        
     },
     descricao: String,
     nutricao: String,
-    habitat: String
+    habitat: String,
+    quantidade: Number,
+    nomeIngles:String
 })
 
 module.exports = mongoose.model('Animal', AnimalSchema)

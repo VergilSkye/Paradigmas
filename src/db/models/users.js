@@ -1,20 +1,29 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const validator = require('validator');
 
-let UsuarioSchema = new mongoose.Schema({
-    privilegio: {
+const UsuarioSchema = new mongoose.Schema({
+  
+
+    email: {
         type: String,
-        enum: ['gerente', 'funcionario'],
-        required: true,
-        default: 'funcionario'
+        require: true,
+        lowercase: true,
+        trim: true,
+        minlength: 1,
+        unique: true,
+        validate: {
+            validator: validator.isEmail,
+            message: '{VALUE} is not a valid email'
+        }
     },
-    login: {
+    password: {
         type: String,
-        required: true
+        require: true,
+        minlength: 6,
+        trim: true,
     },
-    senha: {
-        type: String,
-        required: true
-    }
+
+    adm: Boolean,
 })
 
 module.exports = mongoose.model('Usuario', UsuarioSchema)
