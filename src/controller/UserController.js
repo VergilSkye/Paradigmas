@@ -1,12 +1,19 @@
 let jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 var User = require('../db/models/users');
 let config = require('../config/config');
 
 let UserController = {};
 
+function generateToken(user) {  
+    return jwt.sign(user.toJSON(), config.jwt_encryption, {
+      expiresIn: 10080 // in seconds
+    });
+  }
+
 UserController.register = ((req, res) => {
     if (!req.body.email || !req.body.password) {
-        console.log(req.body.email)
+        
         res.json({
             success: false,
             message: 'Please enter email and password.'
@@ -35,14 +42,13 @@ UserController.register = ((req, res) => {
 });
 
 UserController.find = ((req, res) => {
-    console.log("Segundo");
+    
     User.find().then((User) => {
-        console.log("QUE PORRA")
+       
 		res.send({
 			User
 		});
-	}, (e) => {
-        console.log("DEU ERROS");
+	}, (e) => {       
         
 		res.status(400).send(e);
 	})
@@ -64,16 +70,14 @@ UserController.auth = ((req, res) => {
             user.comparePassword(req.body.password, function (err, isMatch) {
                 if (isMatch && !err) {
                     // Create token if the password matched and no error was thrown
-                    var token = jwt.sign(user.toJSON(), config.jwt_encryption, {
-                        expiresIn: 10000
-                    });
-                    res.json({
+                    var token = generateToken(user);
+                    res.status(200).json({
                         success: true,
                         message: 'Authentication successfull',
                         token
                     });
                 } else {
-                    res.send({
+                    res.status(501).send({
                         success: false,
                         message: 'Authentication failed. Passwords did not match.'
                     });
