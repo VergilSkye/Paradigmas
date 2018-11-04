@@ -6,20 +6,19 @@ router.get('/',(req,res)=>{
 	local.list(req,res);
 });
 
-router.get('/show/:id', (req,res)=>{
+router.get('/:id', (req,res)=>{
 	local.show(req, res);
 })
 
-router.post('/save',(req,res)=>{
+router.post('/',(req,res)=>{
 	
 	local.save(req,res);
 	
 })
-router.post('/update/:id',(req,res)=>{	
+router.patch('/:id',(req,res)=>{	
 	local.update(req,res);
 })
-router.post('/delete/:id',(req,res)=>{
-	console.log("EEEEEEEEEE")
+router.delete('/:id',(req,res)=>{
 	local.delete(req,res)
 })
 

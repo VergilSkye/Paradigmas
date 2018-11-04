@@ -2,81 +2,26 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
-let jwt = require('jsonwebtoken');
-var User = require('../db/models/users');
-let config = require('../config/config');
+
+
+let user =  require('../controller/UserController');
+
 
 // Register new users
-router.post('/register', function (req, res) {
-    if (!req.body.email || !req.body.password) {
-        console.log(req.body.email)
-        res.json({
-            success: false,
-            message: 'Please enter email and password.'
-        });
-    } else {
-        let newUser = new User({
-            email: req.body.email,
-            password: req.body.password,
-            admin: req.body.admin
-        });
-
-        // Attempt to save the user
-        newUser.save(function (err) {
-            if (err) {
-                return res.json({
-                    success: false,
-                    message: 'That email address already exists.'
-                });
-            }
-            res.json({
-                success: true,
-                message: 'Successfully created new user.'
-            });
-        });
-    }
+router.post('/register',(req, res)=> {
+    user.register(req,res);
 });
 
-router.get('/', function (req, res) {
-    User.find({}, function (err, users) {
-        res.json(users);
-    });
+router.get('/',(req, res)=> {  
+    console.log("primerio");
+         
+    user.find(req,res);
+    
 });
 
 // Authenticate the user and get a JSON Web Token to include in the header of future requests.
 router.post('/auth', (req, res) => {
-    User.findOne({
-        email: req.body.email
-    }, function (err, user) {
-        if (err) throw err;
-
-        if (!user) {
-            res.send({
-                success: false,
-                message: 'Authentication failed. User not found.'
-            });
-        } else {
-            // Check if password matches
-            user.comparePassword(req.body.password, function (err, isMatch) {
-                if (isMatch && !err) {
-                    // Create token if the password matched and no error was thrown
-                    var token = jwt.sign(user.toJSON(), config.jwt_encryption, {
-                        expiresIn: 10000
-                    });
-                    res.json({
-                        success: true,
-                        message: 'Authentication successfull',
-                        token
-                    });
-                } else {
-                    res.send({
-                        success: false,
-                        message: 'Authentication failed. Passwords did not match.'
-                    });
-                }
-            });
-        }
-    });
+    user.auth(req,res);
 });
 
 // Example of required auth: protect dashboard route with JWT

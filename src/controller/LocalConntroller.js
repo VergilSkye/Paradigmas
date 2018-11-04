@@ -97,8 +97,7 @@ LocalController.update = ((req, res) => {
 });
 
 LocalController.delete = ((req, res) => {
-	let id = req.params.id;
-	console.log("Entrou aqui?")
+	let id = req.params.id;	
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
