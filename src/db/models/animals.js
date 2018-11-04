@@ -9,8 +9,7 @@ const AnimalSchema = new Schema({
     },
     classe: String,
     nome_cientifico: {
-        type: String,
-        unique: true,
+        type: String,        
         required: true
     },
     nome_popular: Array,

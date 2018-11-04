@@ -6,12 +6,19 @@ router.get('/',(req,res)=>{
 	animal.list(req,res);
 });
 
-router.get('/show/:id', (req,res)=>{
+router.get('/:id', (req,res)=>{
 	animal.show(req, res);
 })
 
-router.post('/save',(req,res)=>{
+router.post('/',(req,res)=>{	
 	animal.save(req,res);
+})
+
+router.patch('/:id',(req,res)=>{	
+	animal.update(req,res);
+})
+router.delete('/:id',(req,res)=>{
+	animal.delete(req,res);
 })
 
 module.exports= router;

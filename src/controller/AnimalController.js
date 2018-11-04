@@ -77,11 +77,13 @@ AnimalController.find = ((req, res) => {
 
 AnimalController.update = ((req, res) => {
 	let id = req.params.id;
-	let body = _.pick(['localizacao', 'classe', 'nome_cientifico', 'imagem_url', 'sexo', 'data_nascimento', 'descricao', 'nutricao', 'habitat', 'quantidade', 'nomeIngles']);
+	let body = _.pick(req.body,['localizacao', 'classe', 'nome_cientifico', 'imagem_url', 'sexo', 'data_nascimento', 'descricao', 'nutricao', 'habitat', 'quantidade', 'nomeIngles']);
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
-	Animal.findById(id, {
+	console.log(body.nome_cientifico + " EEEEEEE " +body.descricao)
+
+	Animal.findOneAndUpdate(id, {
 		$set: body
 	}, {
 			new: true

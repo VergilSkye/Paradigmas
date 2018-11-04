@@ -13,7 +13,7 @@ const options = {
 		password:process.env.MPASSWORD
 	}
 }
-
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, options)
 .then(()=>{
 	console.log('Database connection successful');     
