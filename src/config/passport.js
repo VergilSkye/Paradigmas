@@ -17,7 +17,6 @@ module.exports = function(passport) {
   passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
     User.findById(jwt_payload._id, function(err, user) {
       if (err) { return done(err, false); }
-
       if (user) {
         done(null, user);
       } else {

@@ -81,9 +81,6 @@ LocalController.update = ((req, res) => {
 	else{
 		const coordinates=[];
 	}
-	console.log(req.body.x);
-	console.log(req.body.y);
-	console.log(coordinates.length);
 	
 	if(coordinates.length>1){		
 		body.localizacao ={type:"Point",coordinates:[req.body.x, req.body.y]}
