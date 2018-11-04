@@ -3,7 +3,10 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../db/models/users');
 const config = require('./config');
+<<<<<<< HEAD:src/config/passport.js
 const LocalStrategy = require('passport-local');
+=======
+>>>>>>> bcfc516d4b56c4c73f3692c848fad07852845ba9:src/config/passport.js
 
 
 // Setup work and export for the JWT passport strategy
