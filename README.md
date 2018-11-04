@@ -12,6 +12,7 @@
   * [Associação módulo](#associação-módulo)
   * [Módulos concorrentes distribuido](#módulos-concorrentes-distribuido)
   * [Andamento do projeto em percentual](#andamento-do-projeto-em-percentual)
+- [Documetanção das rotas](#documetanção-das-rotas)
 
 ## Implementação de uma REST-API
 
@@ -33,8 +34,9 @@
 
 - [x] Definir em grupo
 - [x] Fazer a proposta de um sistema ao professor
-- [ ] Na apresentação da proposta o grupo deverá mostrar uma modelagem básica que mostre o funcionamento do sistema
-- [ ] Relatório sobre a proposta (contendo: Título do projeto, nome dos integrantes do grupo, descrição da proposta e detalhamento das funcionalidades principais).
+- [x] Na apresentação da proposta o grupo deverá mostrar uma modelagem básica que mostre o funcionamento do sistema
+- [x] Relatório sobre a proposta (contendo: Título do projeto, nome dos integrantes do grupo, descrição da proposta e detalhamento das funcionalidades principais).
+- [ ] Implementação do sistema
 
 # Relatório 1
 
@@ -72,6 +74,11 @@ O Node.js é uma linguagem single threaded e assíncrona. Nesse projeto não foi
 
 ## Andamento do projeto em percentual
 
-Servidor = 10%, apenas o esqueleto foi implementado além de um diagrama de recursos referente a REST API :disappointed:  
-Cliente = 0%, ainda não foi implementado um esqueleto para começar a codificação :disappointed_relieved:  
-Banco de dados = 20% Foi feito um DER, além de uma descoberta dos atributos de cada classe :expressionless:  
+Servidor = 80%, Foi feito as rotas users,locals,animals, precisa apenas arrumar pequenos detalhes e arrumar a parte de autorização,
+pois a parte de autentificação já foi implementada :grinning:
+Cliente = 10%, Foi implementado um esqueleto para começar a codificação :disappointed: 
+Banco de dados = 60% Foi feito um DER, além dos modelos, só necessario popular o banco de dados :astonished: 
+
+
+## Documetanção das rotas
+ [POSTMAN](https://documenter.getpostman.com/view/5251988/RzZ6HLGH)

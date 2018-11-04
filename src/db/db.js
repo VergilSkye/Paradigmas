@@ -1,7 +1,5 @@
-let mongoose = require('mongoose');
-require('dotenv').config({
-	path: '../../.env'
-})
+const mongoose = require('mongoose');
+const config=require('../config/config.js');
 
 const options = {
 	useNewUrlParser: true,
@@ -9,12 +7,12 @@ const options = {
 	reconnectInterval: 500, // Reconnect every 500ms
 	poolSize: 10,
 	auth:{
-		user:process.env.MUSER,
-		password:process.env.MPASSWORD
+		user:config.db_user,
+		password:config.db_passwrod
 	}
 }
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, options)
+mongoose.connect(config.db, options)
 .then(()=>{
 	console.log('Database connection successful');     
 }, err=>{

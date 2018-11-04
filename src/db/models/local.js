@@ -1,6 +1,6 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-let LocalSchema = new mongoose.Schema({
+const LocalSchema = new mongoose.Schema({
     recinto: String,
     descricao: String,
     imagem_url: String,

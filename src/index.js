@@ -12,7 +12,7 @@ const cookieParser = require('cookie-parser');
 
 
 //config
-const CONFIG = require('./config/config');
+const CONFIG = require('./config/config.js');
 
 //db
 const db = require('./db/db.js');
@@ -31,7 +31,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 //Adicionando porta
-const PORT = process.env.PORT || 7500;
+
+const PORT = CONFIG.port;
 // logger
 app.use(morgan('dev'));
 

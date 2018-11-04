@@ -16,7 +16,7 @@ LocalController.list = ((req, res) => {
 })
 //Show a specific Local with id
 LocalController.show = ((req, res) => {
-	let id = req.params.id;
+	const id = req.params.id;
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
@@ -54,7 +54,7 @@ LocalController.save = ((req, res) => {
 })
 
 LocalController.find = ((req, res) => {
-	let id = req.params.id;
+	const id = req.params.id;
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
@@ -70,11 +70,21 @@ LocalController.find = ((req, res) => {
 })
 
 LocalController.update = ((req, res) => {
-	let id = req.params.id;
+	const id = req.params.id;
+	const coordinates=[];
 	
+	const body = _.pick(req.body,['recinto', 'descricao', 'imagem_url']);
+	if(req.body.x != undefined && req.body.y !=undefined)
+	{
+		const coordinates =[req.body.x,req.body.y];
+	}
+	else{
+		const coordinates=[];
+	}
+	console.log(req.body.x);
+	console.log(req.body.y);
+	console.log(coordinates.length);
 	
-	let body = _.pick(req.body,['recinto', 'descricao', 'imagem_url']);
-	let coordinates =[req.body.x,req.body.y];
 	if(coordinates.length>1){		
 		body.localizacao ={type:"Point",coordinates:[req.body.x, req.body.y]}
 	}	
@@ -97,7 +107,7 @@ LocalController.update = ((req, res) => {
 });
 
 LocalController.delete = ((req, res) => {
-	let id = req.params.id;	
+	const id = req.params.id;	
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
