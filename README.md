@@ -75,7 +75,7 @@ O Node.js é uma linguagem single threaded e assíncrona. Nesse projeto não foi
 ## Andamento do projeto em percentual
 
 Servidor = 80%, Foi feito as rotas users,locals,animals, precisa apenas arrumar pequenos detalhes e arrumar a parte de autorização,
-pois a parte de autentificação já foi implementada :grinning: 
+pois a parte de autentificação já foi implementada :grinning:  
 Cliente = 10%, Foi implementado um esqueleto para começar a codificação :disappointed:  
 Banco de dados = 60% Foi feito um DER, além dos modelos, só necessario popular o banco de dados :astonished: 
 
