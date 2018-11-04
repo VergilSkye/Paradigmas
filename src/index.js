@@ -2,12 +2,13 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-var favicon = require('serve-favicon');
+const favicon = require('serve-favicon');
 const session = require('express-session');
 const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
 
 
 //config
@@ -38,13 +39,13 @@ app.use(morgan('dev'));
 app.use(cors({
 	exposedHeaders: ["Link"]
 }));
+//cookie parser
+app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({
 	limit: "100kb",
 }));
-
-
 
 // Init passport
 app.use(passport.initialize());
@@ -59,20 +60,6 @@ app.use('/animals', animals);
 app.use('/users', users);
 app.use('/locals',locals);
 
-// Use the session middleware
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
-app.get('/don', function(req, res, next) {
-  if (req.session.views) {
-    req.session.views++
-    res.setHeader('Content-Type', 'text/html')
-    res.write('<p>views: ' + req.session.views + '</p>')
-    res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
-    res.end()
-  } else {
-    req.session.views = 1
-    res.end('welcome to the session demo. refresh!')
-  }
-})
 /**
  * Error handlers
  */
