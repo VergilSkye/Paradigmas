@@ -1,42 +1,105 @@
-import http from 'http';
-import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import bodyParser from 'body-parser';
-import initializeDb from './db';
-import middleware from './middleware';
-import api from './api';
-import config from './config.json';
+//libs
+const express = require('express');
+const http = require('http');
+const path = require('path');
+const favicon = require('serve-favicon');
+const session = require('express-session');
+const cors = require('cors');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+
+
+//config
+const CONFIG = require('./config/config');
+
+//db
+const db = require('./db/db.js');
+
+//routes
+const animals = require('./routes/animals.js');
+const users = require('./routes/users.js');
+const locals = require('./routes/locals.js');
+
 
 let app = express();
-//Adicionando porta
-const PORT = 8000;
+
 app.server = http.createServer(app);
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+
+//Adicionando porta
+const PORT = process.env.PORT || 7500;
 // logger
 app.use(morgan('dev'));
 
 // 3rd party middleware
 app.use(cors({
-	exposedHeaders: config.corsHeaders
+	exposedHeaders: ["Link"]
 }));
+//cookie parser
+app.use(cookieParser());
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({
-	limit : config.bodyLimit
+	limit: "100kb",
 }));
 
-// connect to db
-initializeDb( db => {
+// Init passport
+app.use(passport.initialize());
+require('./config/passport.js')(passport);
 
-	// internal middleware
-	app.use(middleware({ config, db }));
-
-	// api router
-	app.use('/api', api({ config, db }));
-
-	app.server.listen(process.env.PORT || config.port, () => {
-		console.log(`Started on port ${app.server.address().port}`);
-	});
+app.use("/v1", (req, res) => {
+	res.send('Api page');
 });
 
-export default app;
+//Using routes
+app.use('/animals', animals);
+app.use('/users', users);
+app.use('/locals',locals);
+
+/**
+ * Error handlers
+ */
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
+
+
+app.listen(PORT, () => {
+	console.log(`Started up at port ${PORT}`);
+});
+
+
+module.exports = app;
+
+
+
