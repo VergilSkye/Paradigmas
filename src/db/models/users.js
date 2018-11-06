@@ -2,7 +2,7 @@
 // old const passportLocalMongoose = require('passport-local-mongoose');
 const mongoose = require('mongoose');
 const validator = require('validator');
-let bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 const UsuarioSchema = new mongoose.Schema({
     email: {
@@ -27,7 +27,8 @@ const UsuarioSchema = new mongoose.Schema({
     admin: {
         type:Boolean,
         default:false
-    }
+    },
+    resetPasswordToken: { type: String },    
 });
 
 // Hash the user's password before inserting a new user
@@ -63,38 +64,4 @@ UsuarioSchema.pre('save', function(next) {
 
 module.exports = mongoose.model('Usuario', UsuarioSchema);
 
-
-
-//Old, need revision
-/*const UsuarioSchema = new mongoose.Schema({  
-
-    email: {
-        type: String,
-        require: true,
-        lowercase: true,
-        trim: true,
-        minlength: 1,
-        unique: true,
-        validate: {
-            validator: validator.isEmail,
-            message: '{VALUE} is not a valid email'
-        }
-    },
-    username:{
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
-    },
-    password: {
-        type: String,
-        require: true,
-        minlength: 6,
-        trim: true,
-    },    
-    name:String,
-    adm: Boolean,
-});
-
-UsuarioSchema.plugin(passportLocalMongoose);*/
 

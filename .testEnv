@@ -1,0 +1,11 @@
+RENOMEIE ESSE Arquivo para .env e adicione as seguintes info.
+
+PROD_MONGODB = {$URL_MOD}
+MUSER = {$USER}
+MPASSWORD = {$SENHA}
+TEST_MONGODB = {$URL_TEST_MOD}
+
+PORT = {$PORT}
+
+JWT_ENCRYPTION = {$KEY}
+JWT_EXPIRATION = {$NUMBER}

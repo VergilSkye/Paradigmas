@@ -17,7 +17,7 @@ AnimalController.list = ((req, res) => {
 })
 //Show a specific animal with id
 AnimalController.show = ((req, res) => {
-	let id = req.params.id;
+	const id = req.params.id;
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
@@ -58,9 +58,9 @@ AnimalController.save = ((req, res) => {
 	})
 
 })
-
+// Find All animals
 AnimalController.find = ((req, res) => {
-	let id = req.params.id;
+	const id = req.params.id;
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
@@ -74,15 +74,13 @@ AnimalController.find = ((req, res) => {
 			res.status(400).send(e);
 		})
 })
-
+//Update a animal with a id
 AnimalController.update = ((req, res) => {
-	let id = req.params.id;
-	let body = _.pick(req.body,['localizacao', 'classe', 'nome_cientifico', 'imagem_url', 'sexo', 'data_nascimento', 'descricao', 'nutricao', 'habitat', 'quantidade', 'nomeIngles']);
+	const id = req.params.id;
+	const body = _.pick(req.body,['localizacao', 'classe', 'nome_cientifico', 'imagem_url', 'sexo', 'data_nascimento', 'descricao', 'nutricao', 'habitat', 'quantidade', 'nomeIngles']);
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
-	console.log(body.nome_cientifico + " EEEEEEE " +body.descricao)
-
 	Animal.findOneAndUpdate(id, {
 		$set: body
 	}, {
@@ -98,9 +96,9 @@ AnimalController.update = ((req, res) => {
 			res.status(400).send(e);
 		})
 });
-
+//Delete a animal
 AnimalController.delete = ((req, res) => {
-	let id = req.params.id;
+	const id = req.params.id;
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
@@ -115,8 +113,7 @@ AnimalController.delete = ((req, res) => {
 		}).catch((e) => {
 			res.status(400).send(e);
 		});
-
-})
+});
 
 module.exports = AnimalController;
 
