@@ -4,13 +4,13 @@ export default {
     listar:() => {
         return http.get('usuario')
     },
-    salvar:(usuario) => {
-        return http.post('usuario', usuario)
+    registrar:(credentials) => {
+        return http.post('usuario', credentials)
     },
-    atualizar:(usuario) => {
-        return http.put('usuario', usuario)
+    atualizar:(credentials) => {
+        return http.put('usuario', credentials)
     },
-    apagar:(usuario) => {
-        http.delete('usuario', { data: usuario })
+    apagar:(credentials) => {
+        http.delete('usuario', { data: credentials })
     }
 }
