@@ -1,0 +1,24 @@
+/dist
+/logs
+/npm-debug.log
+/node_modules
+.DS_Store
+.env
+
+src/view/.DS_Store
+src/view/node_modules
+src/view/dist
+src/view/npm-debug.log*
+src/view/yarn-debug.log*
+src/view/yarn-error.log*
+src/view/test/unit/coverage/
+src/view/test/e2e/reports/
+src/view/selenium-debug.log
+
+# Editor directories and files
+src/view/.idea
+src/view/.vscode
+src/view/*.suo
+src/view/*.ntvs*
+src/view/*.njsproj
+src/view/*.sln
