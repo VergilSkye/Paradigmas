@@ -61,9 +61,7 @@ app.use(bodyParser.json({
 // Init passport
 app.use(passport.initialize());
 require('./config/passport.js')(passport);
-app.use('/'),(req,res) =>{
-  res.send('Hello Express');
-}
+
 
 app.use("/v2", (req, res) => {
   res.send('Api page');

@@ -14,8 +14,8 @@ else if (env == 'test') {
 	CONFIG.app = 'test';	
 	CONFIG.db = process.env.TEST_MONGODB
 }
-CONFIG.port = process.env.PORT 
-console.log(process.env.PORT+"EEEEEEEEEEEEE")
+CONFIG.port = process.env.PORT || 3000 
+
 CONFIG.db_user = process.env.MUSER ;
 CONFIG.db_passwrod=process.env.MPASSWORD;
 
