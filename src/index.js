@@ -19,8 +19,9 @@ const db = require('./db/db.js');
 
 //routes
 const animals = require('./routes/animals.js');
-const users = require('./routes/users.js');
+const auth = require('./routes/auth.js');
 const locals = require('./routes/locals.js');
+const user = require('./routes/users');
 
 
 let app = express();
@@ -61,14 +62,15 @@ app.use(bodyParser.json({
 app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
-app.use("/v1", (req, res) => {
-	res.send('Api page');
+app.use("/v2", (req, res) => {
+  res.send('Api page');
 });
 
 //Using routes
-app.use('/animals', animals);
-app.use('/users', users);
-app.use('/locals',locals);
+app.use('/v1/zoo/animals', animals);
+app.use('/v1/zoo/auth', auth);
+app.use('/v1/zoo/users', user);
+app.use('/v1/zoo/locals',locals);
 
 /**
  * Error handlers

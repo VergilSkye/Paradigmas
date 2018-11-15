@@ -1,33 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const passportService = require('../config/passport');
-const passport = require('passport');
-
 const user =  require('../controller/UserController');
 
-const requireAuth = passport.authenticate('jwt', { session: false });  
+const requireAuth = require('../Utils/utils').requireAuth;
+const requireAdmin = require('../Utils/utils').requireAdmin;
 
-
-// Register new users
-router.post('/register',(req, res)=> {
-    user.register(req,res);
+router.get('/',requireAuth,(req,res)=>{
+    
+	user.list(req,res);
 });
 
-router.get('/',(req, res)=> {           
-    user.find(req,res);    
+router.get('/:id',requireAuth, (req,res)=>{
+	user.show(req, res);
 });
 
-// Authenticate the user and get a JSON Web Token to include in the header of future requests.
-router.post('/auth', (req, res) => {
-    user.auth(req,res);
+router.post('/',requireAuth, requireAdmin,(req,res)=>{	
+	user.save(req,res);
+});
+router.patch('/:id',requireAuth, requireAdmin,(req,res)=>{	
+	user.update(req,res);
 });
 
-// Example of required auth: protect dashboard route with JWT
-router.get('/dashboard', requireAuth, (req, res)=> {
-    res.send('It worked! User id is: ' + req.user._id + '.' + req.user);
-});
-router.get('/me', requireAuth, (req, res)=> {
-    res.send(req.user);
+router.delete('/:id',requireAuth ,requireAuth, requireAdmin,(req,res)=>{
+	user.delete(req,res);
 });
 
-module.exports = router;
+module.exports= router;
