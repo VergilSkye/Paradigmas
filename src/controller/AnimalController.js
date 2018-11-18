@@ -38,10 +38,19 @@ AnimalController.create = ((req, res) => {
 })
 // Create a new animal
 AnimalController.save = ((req, res) => {
+	let nome_pop=[];
+	var i=0;
+	for(var key in req.body.nome_popular){
+		if(req.body.nome_popular){
+			nome_pop[i++]=req.body.nome_popular[key];
+			console.log(nome_pop[i-1]);
+		}
+	}
 	const animal = new Animal({
 		localizacao: req.body.localizacao,
 		classe: req.body.classe,
 		nome_cientifico: req.body.nome_cientifico,
+		nome_popular:nome_pop,
 		imagem_url: req.body.imagem_url,
 		sexo: req.body.sexo,
 		data_nascimento: req.body.data_nascimento,
@@ -77,11 +86,14 @@ AnimalController.find = ((req, res) => {
 //Update a animal with a id
 AnimalController.update = ((req, res) => {
 	const id = req.params.id;
+	console.log(id);
+	
 	const body = _.pick(req.body,['localizacao', 'classe', 'nome_cientifico', 'imagem_url', 'sexo', 'data_nascimento', 'descricao', 'nutricao', 'habitat', 'quantidade', 'nomeIngles']);
+	console.log(body.descricao + body.quantidade)
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
-	Animal.findOneAndUpdate(id, {
+	Animal.findByIdAndUpdate(id, {
 		$set: body
 	}, {
 			new: true
