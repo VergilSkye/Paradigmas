@@ -1,90 +1,114 @@
-let jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-var User = require('../db/models/users');
-let config = require('../config/config');
+const { ObjectID } = require('mongodb');
+const User = require('../db/models/users');
+const _ = require('lodash');
 
 let UserController = {};
-
-function generateToken(user) {  
-    return jwt.sign(user.toJSON(), config.jwt_encryption, {
-      expiresIn: 10080 // in seconds
-    });
-  }
-
-UserController.register = ((req, res) => {
-    if (!req.body.email || !req.body.password) {
-        
-        res.json({
-            success: false,
-            message: 'Please enter email and password.'
-        });
-    } else {
-        let newUser = new User({
-            email: req.body.email,
-            password: req.body.password,
-            admin: req.body.admin
-        });
-
-        // Attempt to save the user
-        newUser.save(function (err) {
-            if (err) {
-                return res.json({
-                    success: false,
-                    message: 'That email address already exists.'
-                });
-            }
-            res.json({
-                success: true,
-                message: 'Successfully created new user.'
-            });
-        });
-    }
-});
-
-UserController.find = ((req, res) => {
-    
-    User.find().then((User) => {
-       
+//Find All Users
+UserController.list = ((req, res) => {
+	User.find().then((User) => {
 		res.send({
 			User
 		});
-	}, (e) => {       
-        
+	}, (e) => {
 		res.status(400).send(e);
 	})
 })
+//Show a specific user with id
+UserController.show = ((req, res) => {
+	const id = req.params.id;
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send();
+	}
+	User.findById(id).then((User) => {
+		if (!User) {
+			res.status(404).send();
+		}
+		res.send({
+			User
+		});
+	}).catch((e) => {
+		res.status(400).send(e);
+	});
+});
+//I don't know
+UserController.create = ((req, res) => {
+	res.render("Algo");
+})
+// Create a new User
+UserController.save = ((req, res) => {
+	const user = new User({
+        email: req.body.email,
+        password: req.body.password,
+        admin: req.body.admin
+	});
+	user.save().then((doc) => {
+		res.send(doc);
+	}, (e) => {
+		res.status(400).send(e);
+	})
 
-UserController.auth = ((req, res) => {
-    User.findOne({
-        email: req.body.email
-    }, function (err, user) {
-        if (err) throw err;
-
-        if (!user) {
-            res.send({
-                success: false,
-                message: 'Authentication failed. User not found.'
-            });
-        } else {
-            // Check if password matches
-            user.comparePassword(req.body.password, function (err, isMatch) {
-                if (isMatch && !err) {
-                    // Create token if the password matched and no error was thrown
-                    var token = generateToken(user);
-                    res.status(200).json({
-                        success: true,
-                        message: 'Authentication successfull',
-                        token
-                    });
-                } else {
-                    res.status(501).send({
-                        success: false,
-                        message: 'Authentication failed. Passwords did not match.'
-                    });
-                }
-            });
-        }
-    });
+})
+// Find All users
+UserController.find = ((req, res) => {
+	const id = req.params.id;
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send();
+	}
+	User.findOne({ _id: id })
+		.then((User) => {
+			res.send({
+				User
+			})
+		})
+		.catch((e) => {
+			res.status(400).send(e);
+		})
+})
+//Update a user with a id
+UserController.update = ((req, res) => {
+	const id = req.params.id;
+	console.log(id);
+	
+	const body = _.pick(req.body,['email', 'admin','password']);
+	console.log(body.descricao + body.quantidade)
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send();
+	}
+    User.findById(id).
+    then((user) => {
+			if (!user) {
+				return res.status(404).send()
+            }
+            user.password=req.body.password;
+             
+            user.save().then((doc) => {
+                res.send(doc);
+            }, (e) => {
+                res.status(400).send(e);
+            })
+			
+		}).catch((e) => {
+			res.status(400).send(e);
+		})
+});
+//Delete a user
+UserController.delete = ((req, res) => {
+	const id = req.params.id;
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send();
+	}
+	User.findByIdAndRemove(id)
+		.then((Users) => {
+			if (!Users) {
+				res.status(404).send();
+			}
+			res.send({
+				Users
+			});
+		}).catch((e) => {
+			res.status(400).send(e);
+		});
 });
 
 module.exports = UserController;
+

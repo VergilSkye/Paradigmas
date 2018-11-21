@@ -81,4 +81,4 @@ pois a parte de autentificação já foi implementada :grinning:
 
 
 ## Documetanção das rotas
- [POSTMAN](https://documenter.getpostman.com/view/5251988/RzZ6HLGH)
+ [POSTMAN](https://documenter.getpostman.com/view/5251988/RzZDhGSs#15b33f5e-2f79-4cf0-b48c-a1c975a97256)
