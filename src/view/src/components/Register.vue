@@ -1,21 +1,28 @@
 <template>
-  <div>
-    <h1>Registro de usuário</h1>
-
-    <input
-      type="email"
-      name="email"
-      v-model="email"
-      placeholder="email"/>
-    <br>
-    <input
-      type="password"
-      name="password"
-      v-model="password"
-      placeholder="password"/>
-    <br>
-    <button @click="register" type="submit">Registrar</button>
-  </div>
+  <v-layout column>
+    <v-flex xs12 offset-xs>
+      <div class="white elevation-2">
+        <v-toolbar flat dense class="orange" dark>
+          <v-toolbar-title>Cadastrar novo usuário</v-toolbar-title>
+        </v-toolbar>
+        <div class="pl-4 pr-4 pt-2 pb-2">
+          <v-text-field
+            label="Email"
+            v-model="email"
+          ></v-text-field>
+          <br>
+          <v-text-field
+            label="Password"
+            v-model="password"
+            class=""
+          ></v-text-field>
+          <br>
+          <div class="error" v-html="error" />
+          <v-btn class="orange" dark @click="register" type="submit">Registrar</v-btn>
+        </div>
+      </div>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -25,25 +32,34 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   },
   methods: {
     async register () {
-      await AuthUser.registrar({
-        email: this.email,
-        password: this.password
-      })
+      try {
+        await AuthUser.registrar({
+          email: this.email,
+          password: this.password
+        })
+      } catch (error) {
+        this.error = error.response.data.error
+      }
     }
   },
   mounted () {
-    setTimeout(() => {
-      this.email = 'Heeey World!'
-    }, 5000)
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* .primary--text {
+  color: orange;
+  caret-color: orange;
+} */
+.error {
+  color: red;
+}
 </style>
