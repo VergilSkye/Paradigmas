@@ -12,5 +12,8 @@ export default {
   },
   apagar: (credentials) => {
     http.delete('users', { data: credentials })
+  },
+  login: (credentials) => {
+    return http.post('auth/login', credentials)
   }
 }
