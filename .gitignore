@@ -22,3 +22,8 @@ src/view/*.suo
 src/view/*.ntvs*
 src/view/*.njsproj
 src/view/*.sln
+<<<<<<< HEAD
+=======
+src/view/*.sw*
+
+>>>>>>> 5e4711aac3f159ae49461aa8f577269a0ed3ba71

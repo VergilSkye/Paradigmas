@@ -2,15 +2,18 @@ import { http } from './config'
 
 export default {
   listar: () => {
-    return http.get('usuario')
+    return http.get('users')
   },
   registrar: (credentials) => {
-    return http.post('usuario', credentials)
+    return http.post('users', credentials)
   },
   atualizar: (credentials) => {
-    return http.put('usuario', credentials)
+    return http.put('users', credentials)
   },
   apagar: (credentials) => {
-    http.delete('usuario', { data: credentials })
+    http.delete('users', { data: credentials })
+  },
+  login: (credentials) => {
+    return http.post('auth/login', credentials)
   }
 }

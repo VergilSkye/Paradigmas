@@ -6,6 +6,7 @@ const _ = require('lodash');
 let LocalController = {};
 //Find All Locals
 LocalController.list = ((req, res) => {
+	
 	Local.find().then((Local) => {
 		res.send({
 			Local
@@ -13,6 +14,8 @@ LocalController.list = ((req, res) => {
 	}, (e) => {
 		res.status(400).send(e);
 	})
+	
+
 })
 //Show a specific Local with id
 LocalController.show = ((req, res) => {
@@ -37,13 +40,20 @@ LocalController.create = ((req, res) => {
 })
 // Create a new Local
 LocalController.save = ((req, res) => {
+
+	const coordinates=[];
+	const x = req.body.x || 0 ;
+	const y = req.body.y || 0;
 	
+
 	const local = new Local({
 		recinto: req.body.recinto,
 		descricao: req.body.descricao,
 		imagem_url: req.body.imagem_url,
-		localizacao: { coordinates: [req.body.x, req.body.y] }
+		localizacao: {type:"Point", coordinates:[x,y] }
 	});
+
+	
 
 	local.save().then((doc) => {
 		res.send(doc);
@@ -55,6 +65,7 @@ LocalController.save = ((req, res) => {
 
 LocalController.find = ((req, res) => {
 	const id = req.params.id;
+	
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}
@@ -73,23 +84,19 @@ LocalController.update = ((req, res) => {
 	const id = req.params.id;
 	const coordinates=[];
 	
+	console.log(req.body.x + " EEEEEEEEEEEEE " + req.body.y)
 	const body = _.pick(req.body,['recinto', 'descricao', 'imagem_url']);
-	if(req.body.x != undefined && req.body.y !=undefined)
-	{
-		const coordinates =[req.body.x,req.body.y];
-	}
-	else{
-		const coordinates=[];
-	}
 	
-	if(coordinates.length>1){		
+	if(req.body.x != undefined && req.body.y !=undefined)
+	{		
 		body.localizacao ={type:"Point",coordinates:[req.body.x, req.body.y]}
-	}	
+	}		
+	
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send();
 	}	
-	
-	Local.findOneAndUpdate(id, {$set:body}, {
+	console.log(body.recinto + "eeeeeeeee")
+	Local.findByIdAndUpdate(id, {$set:body}, {
 			new: true
 		}).then((Local) => {
 			if (!Local) {

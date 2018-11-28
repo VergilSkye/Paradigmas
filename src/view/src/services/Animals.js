@@ -2,15 +2,15 @@ import { http } from './config'
 
 export default {
   listar:() => {
-    return http.get('animal')
+    return http.get('animals')
   },
   salvar:(animal) => {
-    return http.post('animal', animal)
+    return http.post('animals', animal)
   },
   atualizar:(animal) => {
-    return http.put('animal', animal)
+    return http.patch('animals', animal)
   },
   apagar:(animal) => {
-    http.delete('animal', { data: animal })
+    http.delete('animals', { data: animal })
   }
 }

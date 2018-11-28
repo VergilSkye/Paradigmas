@@ -9,7 +9,7 @@ export default {
   name: 'MainPage',
   data () {
     return {
-      msg: 'Welcome to Zoomania App'
+      msg: 'Welcome to Animais'
     }
   }
 }

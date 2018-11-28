@@ -3,7 +3,7 @@
     <v-flex xs12 offset-xs>
       <div class="white elevation-2">
         <v-toolbar flat dense class="orange darken-2" dark>
-          <v-toolbar-title>Cadastrar novo usuário</v-toolbar-title>
+          <v-toolbar-title>Acesso a funcionários</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
           <form
@@ -23,7 +23,7 @@
           </form>
           <br>
           <div class="error" v-html="error" />
-          <v-btn class="orange darken-2" dark @click="register" type="submit">Registrar</v-btn>
+          <v-btn class="orange darken-2" dark @click="login" type="submit">Entrar</v-btn>
         </div>
       </div>
     </v-flex>
@@ -33,7 +33,6 @@
 <script>
 import AuthUser from '@/services/AuthUser'
 export default {
-  // name: 'Register',
   data () {
     return {
       email: '',
@@ -42,12 +41,15 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        await AuthUser.registrar({
+        const response = await AuthUser.login({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({name: 'MainPage'})
       } catch (error) {
         this.error = error.response.data.error
       }
